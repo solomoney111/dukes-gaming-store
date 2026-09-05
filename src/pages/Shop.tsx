@@ -3,7 +3,8 @@ import { navigate, useRoute } from "../lib/router";
 import { CATEGORIES, PRODUCTS, categoryCount } from "../data/products";
 import ProductCard from "../components/ProductCard";
 import { IconChevronDown, IconClose, IconFilter, IconSearch } from "../components/Icons";
-import { Reveal } from "../components/ui";
+import { PageHeader, Reveal } from "../components/ui";
+import { SCENE_IMAGES } from "../data/products";
 
 const PRICE_RANGES = [
   { id: "", label: "Any price", min: 0, max: Infinity },
@@ -153,24 +154,15 @@ export default function Shop() {
   }, [q, cat, price, sort]);
 
   return (
-    <div className="relative min-h-screen bg-ink pt-24 lg:pt-32">
-      <div className="bg-grid absolute inset-x-0 top-0 h-72 [mask-image:linear-gradient(to_bottom,black,transparent)]" aria-hidden="true" />
-      <div className="absolute right-0 top-0 h-64 w-64 rounded-full bg-royal/25 blur-[110px]" aria-hidden="true" />
+    <div className="relative min-h-screen bg-ink">
+      <PageHeader
+        crumb="SHOP"
+        image={SCENE_IMAGES.promo}
+        title={<>THE <span className="glow-neon text-neon">ARMORY</span>{activeCat && <> — <span className="glow-gold text-gold">{activeCat.name.toUpperCase()}</span></>}</>}
+        sub={`${results.length} ${results.length === 1 ? "item" : "items"} battle-ready and in stock. ${activeCat ? activeCat.blurb : "Every item tested by the Duke squad before listing."}`}
+      />
 
-      {/* header */}
-      <div className="relative mx-auto max-w-7xl px-4 lg:px-8">
-        <Reveal>
-          <p className="text-[11px] font-bold tracking-[0.4em] text-neon">HOME / <span className="text-gold">SHOP</span></p>
-          <h1 className="font-display mt-2 text-6xl leading-[0.9] text-frost sm:text-7xl">
-            THE <span className="text-neon">ARMORY</span>{activeCat && <> — <span className="text-gold">{activeCat.name.toUpperCase()}</span></>}
-          </h1>
-          <p className="mt-3 max-w-xl text-base font-medium text-frost/50">
-            {results.length} {results.length === 1 ? "item" : "items"} battle-ready and in stock. {activeCat ? activeCat.blurb : "Every item tested by the Duke squad before listing."}
-          </p>
-        </Reveal>
-      </div>
-
-      <div className="relative mx-auto mt-10 max-w-7xl px-4 pb-20 lg:px-8">
+      <div className="relative mx-auto mt-8 max-w-7xl px-4 pb-20 lg:px-8">
         <div className="grid gap-8 lg:grid-cols-[260px_1fr]">
           {/* sidebar */}
           <aside className="lg:sticky lg:top-32 lg:self-start">

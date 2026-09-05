@@ -43,15 +43,18 @@ export default function ProductDetails({ id }: { id: string }) {
   };
 
   return (
-    <div className="relative min-h-screen bg-ink pt-24 lg:pt-32">
-      <div className="bg-grid absolute inset-x-0 top-0 h-96 [mask-image:linear-gradient(to_bottom,black,transparent)]" aria-hidden="true" />
+    <div className="relative min-h-screen bg-ink pt-28 lg:pt-36">
+      <div className="bg-blueprint absolute inset-x-0 top-0 h-96 [mask-image:linear-gradient(to_bottom,black,transparent)]" aria-hidden="true" />
       <div className="absolute left-0 top-24 h-72 w-72 rounded-full bg-royal/25 blur-[120px]" aria-hidden="true" />
+      <div className="absolute right-0 top-40 h-64 w-64 rounded-full bg-neon/10 blur-[110px]" aria-hidden="true" />
 
       <div className="relative mx-auto max-w-7xl px-4 pb-20 lg:px-8">
         <Reveal>
-          <p className="text-[11px] font-bold tracking-[0.4em] text-neon">
-            <Link to="/" className="transition hover:text-frost">HOME</Link> /{" "}
-            <Link to="/shop" className="transition hover:text-frost">SHOP</Link> /{" "}
+          <p className="flex flex-wrap items-center gap-2 text-[11px] font-bold tracking-[0.4em] text-neon">
+            <Link to="/" className="transition hover:text-frost">HOME</Link>
+            <span className="text-electric">/</span>
+            <Link to="/shop" className="transition hover:text-frost">SHOP</Link>
+            <span className="text-electric">/</span>
             <span className="text-gold">{product.name.toUpperCase()}</span>
           </p>
         </Reveal>
@@ -134,7 +137,7 @@ export default function ProductDetails({ id }: { id: string }) {
                 <button
                   type="button"
                   onClick={() => addToCart(product.id, qty)}
-                  className="clip-btn inline-flex flex-1 items-center justify-center gap-2 bg-royal px-6 py-3 font-display text-xl tracking-[0.14em] text-frost transition-all hover:bg-electric hover:shadow-neon active:scale-[0.97] sm:flex-none"
+                  className="btn btn-royal flex-1 px-6 py-3 text-xl sm:flex-none"
                 >
                   <IconCart className="h-5 w-5" /> ADD TO CART
                 </button>

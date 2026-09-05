@@ -19,6 +19,7 @@ export default function Footer() {
 
   return (
     <footer className="relative overflow-hidden border-t border-royal/50 bg-abyss">
+      <span className="gold-hairline absolute inset-x-0 top-0" aria-hidden="true" />
       {/* watermark */}
       <p aria-hidden="true" className="font-display pointer-events-none absolute -bottom-8 left-1/2 -translate-x-1/2 select-none whitespace-nowrap text-[26vw] leading-none tracking-[0.06em] text-frost/[0.025] lg:text-[19rem]">
         DUKES

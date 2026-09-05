@@ -3,7 +3,8 @@ import { Link } from "../lib/router";
 import { buildOrderMessage, formatNaira, useStore, waLink, FREE_DELIVERY_THRESHOLD } from "../lib/store";
 import { NIGERIAN_STATES } from "../data/products";
 import { IconArrowRight, IconCheck, IconChevronDown, IconWhatsApp } from "../components/Icons";
-import { Corners, ProductVisual, Reveal, WhatsAppButton } from "../components/ui";
+import { Corners, PageHeader, ProductVisual, Reveal, WhatsAppButton } from "../components/ui";
+import { SCENE_IMAGES } from "../data/products";
 
 interface FormState {
   name: string; phone: string; address: string; city: string; state: string; notes: string;
@@ -104,17 +105,15 @@ export default function Checkout() {
   const waHref = waLink(buildOrderMessage(lines, total, form));
 
   return (
-    <div className="relative min-h-screen bg-ink pt-24 lg:pt-32">
-      <div className="bg-grid absolute inset-x-0 top-0 h-72 [mask-image:linear-gradient(to_bottom,black,transparent)]" aria-hidden="true" />
-      <div className="relative mx-auto max-w-7xl px-4 pb-20 lg:px-8">
-        <Reveal>
-          <p className="text-[11px] font-bold tracking-[0.4em] text-neon">CART / <span className="text-gold">CHECKOUT</span></p>
-          <h1 className="font-display mt-2 text-6xl leading-[0.9] text-frost sm:text-7xl">
-            FINAL <span className="text-neon">DEPLOYMENT</span>
-          </h1>
-        </Reveal>
+    <div className="relative min-h-screen bg-ink">
+      <PageHeader
+        crumb="CHECKOUT"
+        image={SCENE_IMAGES.promo}
+        title={<>FINAL <span className="glow-neon text-neon">DEPLOYMENT</span></>}
+      />
 
-        <div className="mt-8 grid gap-8 lg:grid-cols-[1.4fr_1fr]">
+      <div className="relative mx-auto max-w-7xl px-4 pb-20 pt-8 lg:px-8">
+        <div className="grid gap-8 lg:grid-cols-[1.4fr_1fr]">
           {/* form */}
           <Reveal>
             <form onSubmit={placeOrder} className="clip-card relative border border-royal/70 bg-navy/30 p-6 sm:p-8" noValidate>

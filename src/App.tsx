@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { StoreProvider } from "./lib/store";
 import { useRoute } from "./lib/router";
 import Navbar from "./components/Navbar";
@@ -44,16 +44,59 @@ function PageRouter() {
   }
 }
 
+/* Ambient layered backdrop that sits behind every page */
+function AmbientBackdrop() {
+  return (
+    <div className="pointer-events-none fixed inset-0 z-0" aria-hidden="true">
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_62%_48%_at_12%_-4%,rgba(16,61,128,0.32),transparent_62%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_46%_38%_at_94%_12%,rgba(0,168,255,0.09),transparent_60%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_72%_46%_at_50%_112%,rgba(16,61,128,0.26),transparent_66%)]" />
+      <div className="absolute inset-0" style={{ boxShadow: "inset 0 0 190px rgba(2,6,13,0.92)" }} />
+    </div>
+  );
+}
+
+/* Thin neon → gold scroll progress beam */
+function ScrollProgress() {
+  const [p, setP] = useState(0);
+  useEffect(() => {
+    const onScroll = () => {
+      const h = document.documentElement;
+      const max = h.scrollHeight - h.clientHeight;
+      setP(max > 0 ? h.scrollTop / max : 0);
+    };
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+    };
+  }, []);
+  return (
+    <div className="pointer-events-none fixed inset-x-0 top-0 z-[95] h-[3px]" aria-hidden="true">
+      <div
+        className="h-full origin-left bg-gradient-to-r from-electric via-neon to-gold shadow-[0_0_14px_rgba(0,168,255,0.7)]"
+        style={{ transform: `scaleX(${p})` }}
+      />
+    </div>
+  );
+}
+
 export default function App() {
   return (
     <StoreProvider>
       <div className="relative min-h-screen bg-ink text-frost antialiased">
+        <AmbientBackdrop />
         <div className="noise-overlay" aria-hidden="true" />
-        <Navbar />
-        <main>
-          <PageRouter />
-        </main>
-        <Footer />
+        <ScrollProgress />
+        <div className="relative z-10">
+          <Navbar />
+          <main>
+            <PageRouter />
+          </main>
+          <Footer />
+        </div>
         <WhatsAppFloat />
         <ToastHost />
       </div>

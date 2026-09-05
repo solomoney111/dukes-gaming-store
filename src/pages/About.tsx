@@ -1,7 +1,8 @@
 import { Link } from "../lib/router";
 import { waLink } from "../lib/store";
 import { IconArrowRight, IconCrown, IconPin, IconTarget, IconWhatsApp } from "../components/Icons";
-import { Corners, CountUp, Particles, Reveal, SectionHeading } from "../components/ui";
+import { Corners, CountUp, Particles, Reveal } from "../components/ui";
+import { SCENE_IMAGES } from "../data/products";
 
 const VALUES = [
   { icon: IconTarget, title: "PRECISION FIRST", text: "If it doesn't sharpen your aim, speed or comfort — we don't stock it. Every SKU earns its slot through real ranked testing." },
@@ -106,7 +107,18 @@ export default function About() {
       </div>
 
       {/* CODM band */}
-      <div className="relative mt-16 overflow-hidden border-y border-royal/40 bg-abyss/70">
+      <div className="scanlines relative mt-16 overflow-hidden border-y border-royal/40 bg-abyss/70">
+        <div className="absolute inset-0" aria-hidden="true">
+          <img
+            src={SCENE_IMAGES.lounge}
+            alt=""
+            className="h-full w-full object-cover opacity-30"
+            onError={(e) => { (e.target as HTMLImageElement).style.display = "none"; }}
+            draggable={false}
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-ink via-ink/80 to-ink/55" />
+        </div>
+        <span className="gold-hairline absolute inset-x-0 top-0 z-10" aria-hidden="true" />
         <Particles count={12} />
         <div className="relative mx-auto grid max-w-7xl items-center gap-8 px-4 py-14 lg:grid-cols-[1.2fr_1fr] lg:px-8">
           <Reveal>

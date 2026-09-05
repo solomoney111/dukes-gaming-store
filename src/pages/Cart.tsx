@@ -1,7 +1,8 @@
 import { Link } from "../lib/router";
 import { buildOrderMessage, formatNaira, useStore, waLink, FREE_DELIVERY_THRESHOLD } from "../lib/store";
 import { IconArrowRight, IconTrash, IconWhatsApp, IconBolt } from "../components/Icons";
-import { ProductVisual, QtyStepper, Reveal, WhatsAppButton } from "../components/ui";
+import { PageHeader, ProductVisual, QtyStepper, Reveal, WhatsAppButton } from "../components/ui";
+import { SCENE_IMAGES } from "../data/products";
 
 export default function Cart() {
   const { lines, setQty, removeFromCart, subtotal, delivery, total, cartCount, clearCart } = useStore();
@@ -33,20 +34,18 @@ export default function Cart() {
   const remaining = FREE_DELIVERY_THRESHOLD - subtotal;
 
   return (
-    <div className="relative min-h-screen bg-ink pt-24 lg:pt-32">
-      <div className="bg-grid absolute inset-x-0 top-0 h-72 [mask-image:linear-gradient(to_bottom,black,transparent)]" aria-hidden="true" />
-      <div className="relative mx-auto max-w-7xl px-4 pb-20 lg:px-8">
-        <Reveal>
-          <p className="text-[11px] font-bold tracking-[0.4em] text-neon">HOME / <span className="text-gold">CART</span></p>
-          <div className="mt-2 flex flex-wrap items-end justify-between gap-4">
-            <h1 className="font-display text-6xl leading-[0.9] text-frost sm:text-7xl">
-              YOUR <span className="text-neon">LOADOUT</span> <span className="text-3xl text-frost/40">({cartCount})</span>
-            </h1>
-            <button type="button" onClick={clearCart} className="clip-tag border border-royal/70 px-4 py-2 text-xs font-bold tracking-[0.24em] text-frost/50 transition hover:border-gold hover:text-gold">
-              CLEAR CART
-            </button>
-          </div>
-        </Reveal>
+    <div className="relative min-h-screen bg-ink">
+      <PageHeader
+        crumb="CART"
+        image={SCENE_IMAGES.promo}
+        title={<>YOUR <span className="glow-neon text-neon">LOADOUT</span> <span className="text-3xl text-frost/40 sm:text-4xl">({cartCount})</span></>}
+      >
+        <button type="button" onClick={clearCart} className="clip-tag border border-royal/70 px-4 py-2 text-xs font-bold tracking-[0.24em] text-frost/50 transition hover:border-gold hover:text-gold hover:shadow-gold">
+          CLEAR CART
+        </button>
+      </PageHeader>
+
+      <div className="relative mx-auto max-w-7xl px-4 pb-20 pt-8 lg:px-8">
 
         <div className="mt-8 grid gap-8 lg:grid-cols-[1.6fr_1fr]">
           {/* lines */}

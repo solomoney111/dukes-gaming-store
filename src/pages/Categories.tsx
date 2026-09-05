@@ -1,27 +1,21 @@
 import { Link } from "../lib/router";
-import { CATEGORIES, categoryArt, categoryCount, categoryImage } from "../data/products";
+import { CATEGORIES, SCENE_IMAGES, categoryArt, categoryCount, categoryImage } from "../data/products";
 import { CATEGORY_ICONS, IconArrowRight } from "../components/Icons";
 import { ProductArt } from "../components/ProductArt";
-import { Reveal } from "../components/ui";
+import { PageHeader, Reveal } from "../components/ui";
 
 export default function Categories() {
   return (
-    <div className="relative min-h-screen bg-ink pt-24 lg:pt-32">
-      <div className="bg-grid absolute inset-x-0 top-0 h-80 [mask-image:linear-gradient(to_bottom,black,transparent)]" aria-hidden="true" />
-      <div className="absolute left-1/4 top-10 h-64 w-64 rounded-full bg-royal/25 blur-[110px]" aria-hidden="true" />
+    <div className="relative min-h-screen bg-ink">
+      <PageHeader
+        crumb="CATEGORIES"
+        image={SCENE_IMAGES.stage}
+        title={<>FULL <span className="glow-neon text-neon">ARSENAL</span></>}
+        sub="Seventeen categories of battle-tested gear. Whether you're building a mobile claw setup or a full PC battlestation — the armory has you covered."
+      />
 
-      <div className="relative mx-auto max-w-7xl px-4 pb-20 lg:px-8">
-        <Reveal>
-          <p className="text-[11px] font-bold tracking-[0.4em] text-neon">HOME / <span className="text-gold">CATEGORIES</span></p>
-          <h1 className="font-display mt-2 text-6xl leading-[0.9] text-frost sm:text-8xl">
-            FULL <span className="text-neon">ARSENAL</span>
-          </h1>
-          <p className="mt-3 max-w-2xl text-base font-medium text-frost/50 sm:text-lg">
-            Seventeen categories of battle-tested gear. Whether you're building a mobile claw setup or a full PC battlestation — the armory has you covered.
-          </p>
-        </Reveal>
-
-        <div className="mt-10 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="relative mx-auto max-w-7xl px-4 pb-20 pt-10 lg:px-8">
+        <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {CATEGORIES.map((c, i) => {
             const img = categoryImage(c);
             const art = categoryArt(c);

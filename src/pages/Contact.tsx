@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { useStore, waLink, PHONE_DISPLAY } from "../lib/store";
 import { IconChevronDown, IconClock, IconPhone, IconPin, IconWhatsApp } from "../components/Icons";
-import { Corners, Particles, Reveal, SectionHeading } from "../components/ui";
+import { Corners, PageHeader, Particles, Reveal } from "../components/ui";
+import { SCENE_IMAGES } from "../data/products";
 
 const FAQS = [
   { q: "How fast is delivery?", a: "Within Lagos we dispatch same-day (often delivered within 24 hours). Nationwide delivery takes 2–4 working days via tracked courier." },
@@ -64,16 +65,15 @@ export default function Contact() {
   ];
 
   return (
-    <div className="relative min-h-screen bg-ink pt-24 lg:pt-32">
-      <div className="bg-grid absolute inset-x-0 top-0 h-80 [mask-image:linear-gradient(to_bottom,black,transparent)]" aria-hidden="true" />
-      <div className="absolute left-0 top-32 h-72 w-72 rounded-full bg-royal/25 blur-[120px]" aria-hidden="true" />
+    <div className="relative min-h-screen bg-ink">
+      <PageHeader
+        crumb="CONTACT"
+        image={SCENE_IMAGES.lounge}
+        title={<>CONTACT <span className="glow-neon text-neon">HQ</span></>}
+        sub="Questions, bulk orders, bundle deals or just setup advice — the squad is one message away."
+      />
 
-      <div className="relative mx-auto max-w-7xl px-4 pb-20 lg:px-8">
-        <SectionHeading
-          eyebrow="Open comms channel"
-          title={<>CONTACT <span className="text-neon">HQ</span></>}
-          sub="Questions, bulk orders, bundle deals or just setup advice — the squad is one message away."
-        />
+      <div className="relative mx-auto max-w-7xl px-4 pb-20 pt-10 lg:px-8">
 
         {/* contact cards */}
         <div className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">

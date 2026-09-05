@@ -48,6 +48,13 @@ export const HERO_IMAGES = {
   triggers: IMG.triggers,
 };
 
+/* Cinematic brand scenes (flyer-grade lighting: navy + electric blue + gold) */
+export const SCENE_IMAGES = {
+  stage: "https://image.qwenlm.ai/generated-images/239d5e6e-9f9a-4a37-9509-15d8b2b53aab/_result.png",
+  promo: "https://image.qwenlm.ai/generated-images/8476946f-eaa2-4389-bdca-6bd8f9a43efb/_result.png",
+  lounge: "https://image.qwenlm.ai/generated-images/c5c92ee9-8e0d-4070-8c2f-9e3678006e78/_result.png",
+};
+
 export const CATEGORIES: Category[] = [
   { id: "finger-sleeves", name: "Gaming Finger Sleeves", blurb: "Anti-sweat carbon fiber sleeves for zero-friction aim.", image: IMG.fingerSleeves, icon: "sleeve" },
   { id: "thumb-sleeves", name: "Gaming Thumb Sleeves", blurb: "Ultra-thin knit for buttery-smooth movement control.", image: IMG.thumbSleeves, icon: "thumb" },
